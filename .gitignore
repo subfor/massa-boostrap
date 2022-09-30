@@ -37,7 +37,7 @@ MANIFEST
 *.spec
 
 # Installer logs
-status.py
+status_test.py
 test.py
 fk.py
 pip-log.txt
