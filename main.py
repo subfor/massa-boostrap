@@ -7,7 +7,8 @@ import click
 IP = "127.0.0.1"
 """
 IP = ip address of your node or any other public node.
-If script run on node -  IP = "127.0.0.1" 
+if node can't boostrap, insert ip address any connected 
+to blockchain node and script will get a list fresh nodes to boostrap
 """
 
 
