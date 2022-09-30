@@ -63,11 +63,11 @@ def get_wallet_info():
     response = get_response(json_data=json_data)
 
     if response:
-        final_rolls = resp.json().get('result')[0].get('final_roll_count')
+        final_rolls = response.json().get('result')[0].get('final_roll_count')
 
-        candidate_rolls = resp.json().get('result')[0].get('candidate_roll_count')
-        active_rolls = resp.json().get('result')[0].get('cycle_infos')[-1].get('active_rolls')
-        balance = float(resp.json().get('result')[0].get('final_sequential_balance'))
+        candidate_rolls = response.json().get('result')[0].get('candidate_roll_count')
+        active_rolls = response.json().get('result')[0].get('cycle_infos')[-1].get('active_rolls')
+        balance = float(response.json().get('result')[0].get('final_sequential_balance'))
 
         return active_rolls, final_rolls, candidate_rolls, balance
 
