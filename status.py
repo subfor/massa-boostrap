@@ -27,22 +27,22 @@ WALLET_ADDRESS = ""
 MASSA_PASSWD = ""
 """Massa wallet address and password"""
 
-apiToken = ""
-chatID = ""
+API_TOKEN = ""
+CHAT_ID = ""
 """
-apiToken you can get with @BotFather when creating bot
-chatID you can get this way:
+API_TOKEN you can get with @BotFather when creating bot
+CHAT_ID you can get this way:
 1) Go to bot and send /start
 2) Send anything to bot
 3) In browser go https://api.telegram.org/bot_API_TOKEN_/getUpdates
 example "https://api.telegram.org/bot534238456:AAHbl_s-sr3FR6TxWGLeuxN5EfGQefwegasfgg/getUpdates"
 """
-apiURL = f'https://api.telegram.org/bot{apiToken}/sendMessage'
+API_URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 
 def send_to_telegram(message):
     try:
-        response = requests.post(apiURL, json={'chat_id': chatID, 'text': message})
+        response = requests.post(API_URL, json={'chat_id': CHAT_ID, 'text': message})
     except Exception as e:
         return e
 
@@ -58,7 +58,7 @@ def get_response(json_data: dict):
 if __name__ == '__main__':
 
     json_data = {"id": "1", "jsonrpc": "2.0", "method": "get_addresses",
-                 "params": [["A127LPgaKbBVHov5Zs8Qu1TiYYAndC2qpJf15x2zD57q4ekYom4D"]]}
+                 "params": [[f"{WALLET_ADDRESS}"]]}
 
     resp = get_response(json_data=json_data)
     rolls = resp.json().get('result')[0].get('final_roll_count')
