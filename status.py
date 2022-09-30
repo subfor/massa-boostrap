@@ -14,6 +14,7 @@ This script must be run on your Node
 """
 
 from os import system
+from time import sleep
 
 import requests
 
@@ -55,16 +56,21 @@ def get_response(json_data: dict):
     return response
 
 
-if __name__ == '__main__':
-
+def get_wallet_info():
     json_data = {"id": "1", "jsonrpc": "2.0", "method": "get_addresses",
                  "params": [[f"{WALLET_ADDRESS}"]]}
 
     resp = get_response(json_data=json_data)
-    rolls = resp.json().get('result')[0].get('final_roll_count')
+    final_rolls = resp.json().get('result')[0].get('final_roll_count')
     candidate_rolls = resp.json().get('result')[0].get('candidate_roll_count')
     active_rolls = resp.json().get('result')[0].get('cycle_infos')[-1].get('active_rolls')
     balance = float(resp.json().get('result')[0].get('final_sequential_balance'))
+    return active_rolls, final_rolls, candidate_rolls, balance
+
+
+if __name__ == '__main__':
+
+    active_rolls, final_rolls, candidate_rolls, balance = get_wallet_info()
 
     if active_rolls == 0 and candidate_rolls == 0:
         send_to_telegram(f"Alert !!! Active Rolls: {active_rolls}")
@@ -73,5 +79,7 @@ if __name__ == '__main__':
         else:
             system(
                 f"cd /root/massa/massa-client && ./massa-client -p {MASSA_PASSWD} buy_rolls {WALLET_ADDRESS} 1 0 >> /root/status.log")
-            send_to_telegram(f"Roll purchased successfully! \n Active Rolls: {active_rolls}\n Rolls: {rolls}\n "
+            sleep(30)
+            active_rolls, final_rolls, candidate_rolls, _ = get_wallet_info()
+            send_to_telegram(f"Roll purchased successfully! \n Active Rolls: {active_rolls}\n Rolls: {final_rolls}\n "
                              f"Candidate Rolls: {candidate_rolls}")
