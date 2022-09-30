@@ -74,7 +74,7 @@ def get_wallet_info():
 
 if __name__ == '__main__':
 
-    active_rolls, final_rolls, candidate_rolls, balance = get_wallet_info()
+    active_rolls, _, candidate_rolls, balance = get_wallet_info()
 
     if active_rolls == 0 and candidate_rolls == 0:
         send_to_telegram(f"Alert !!! Active Rolls: {active_rolls}")
