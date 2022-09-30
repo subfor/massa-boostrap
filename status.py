@@ -31,7 +31,7 @@ API_TOKEN = ""
 CHAT_ID = ""
 """
 API_TOKEN you can get with @BotFather when creating bot
-CHAT_ID you can get this way:
+CHAT_ID you can get it this way:
 1) Go to bot and send /start
 2) Send anything to bot
 3) In browser go https://api.telegram.org/bot_API_TOKEN_/getUpdates
