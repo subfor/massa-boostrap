@@ -41,7 +41,7 @@ example "https://api.telegram.org/bot534238456:AAHbl_s-sr3FR6TxWGLeuxN5EfGQefweg
 API_URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 
-def send_to_telegram(message):
+def send_to_telegram(message: str):
     try:
         response = requests.post(API_URL, json={'chat_id': CHAT_ID, 'text': message})
     except Exception as e:
