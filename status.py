@@ -72,7 +72,7 @@ def get_wallet_info():
 
         return active_rolls, final_rolls, candidate_rolls, balance
     else:
-        send_to_telegram("Can't connect to node! ")
+        send_to_telegram("Can't connect to node!")
         raise SystemExit
 
 
