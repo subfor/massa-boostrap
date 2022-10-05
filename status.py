@@ -82,7 +82,9 @@ if __name__ == '__main__':
         else:
             system(
                 f"cd /root/massa/massa-client && ./massa-client -p {MASSA_PASSWD} buy_rolls {WALLET_ADDRESS} 1 0 >> /root/status.log")
+
             sleep(30)
+
             active_rolls, final_rolls, candidate_rolls, _ = get_wallet_info()
             send_to_telegram(f"Roll purchased successfully! \n Active Rolls: {active_rolls}\n Rolls: {final_rolls}\n "
                              f"Candidate Rolls: {candidate_rolls}")
