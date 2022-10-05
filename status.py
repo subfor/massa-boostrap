@@ -52,7 +52,7 @@ def get_response(json_data: dict):
     try:
         response = requests.post(f"http://{IP}:33035", json=json_data)
     except requests.ConnectionError:
-        return None
+        return
     return response
 
 
@@ -71,10 +71,12 @@ def get_wallet_info():
         balance = float(response.json().get('result')[0].get('final_balance'))
 
         return active_rolls, final_rolls, candidate_rolls, balance
+    else:
+        send_to_telegram("Can't connect to node! ")
+        raise SystemExit
 
 
 if __name__ == '__main__':
-
     active_rolls, _, candidate_rolls, balance = get_wallet_info()
 
     if active_rolls == 0 and candidate_rolls == 0:

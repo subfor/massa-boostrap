@@ -4,7 +4,7 @@ import requests
 import pingparsing
 import click
 
-IP = "127.0.0.1"
+IP = "149.202.89.125"
 """
 IP = ip address of your node or any other public node.
 if node can't boostrap, insert ip address any connected 
