@@ -1,11 +1,11 @@
-# massa-boostrap main.py
+# Get list fresh boostrap massa-boostrap  - main.py
 ```
 git clone https://github.com/subfor/massa-boostrap.git
 pip3 install -r requirements.txt`
 ```
 
 
-# Rolls control and autobuy status.py
+# Rolls control and autobuy  - status.py
 ```
 This script must be run on your Node
     Example run script every 5 minutes:
