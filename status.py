@@ -44,8 +44,8 @@ API_URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 def send_to_telegram(message):
     try:
         response = requests.post(API_URL, json={'chat_id': CHAT_ID, 'text': message})
-    except Exception as e:
-        return e
+    except requests.ConnectionError:
+        pass
 
 
 def get_response(json_data: dict):
