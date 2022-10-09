@@ -41,7 +41,7 @@ example "https://api.telegram.org/bot534238456:AAHbl_s-sr3FR6TxWGLeuxN5EfGQefweg
 API_URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 
-def send_to_telegram(message: str):
+def send_to_telegram(message):
     try:
         response = requests.post(API_URL, json={'chat_id': CHAT_ID, 'text': message})
     except requests.ConnectionError:
@@ -72,7 +72,7 @@ def get_wallet_info():
 
         return active_rolls, final_rolls, candidate_rolls, balance
     else:
-        send_to_telegram("Can't connect to node!")
+        send_to_telegram("Can't connect to node! ")
         raise SystemExit
 
 
