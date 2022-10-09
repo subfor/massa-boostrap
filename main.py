@@ -12,15 +12,15 @@ to blockchain node and script will get a list fresh nodes to boostrap
 """
 
 
-def get_response():
+def get_response() -> requests.Response:
     try:
         response = requests.post(f"http://{IP}:33035", json={"jsonrpc": "2.0", "method": "get_status", "id": "1"})
     except requests.ConnectionError:
-        return None
+        return
     return response
 
 
-def check_ping(ip: str):
+def check_ping(ip: str) -> float:
     ping_parser = pingparsing.PingParsing()
     transmitter = pingparsing.PingTransmitter()
     transmitter.destination = ip
@@ -30,7 +30,7 @@ def check_ping(ip: str):
     return avg_ping
 
 
-def main():
+def main() -> None:
     print(f"Fetching list of nodes from {IP}")
     response = get_response()
     if response:

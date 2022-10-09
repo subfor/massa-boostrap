@@ -41,14 +41,14 @@ example "https://api.telegram.org/bot534238456:AAHbl_s-sr3FR6TxWGLeuxN5EfGQefweg
 API_URL = f'https://api.telegram.org/bot{API_TOKEN}/sendMessage'
 
 
-def send_to_telegram(message):
+def send_to_telegram(message) -> None:
     try:
         response = requests.post(API_URL, json={'chat_id': CHAT_ID, 'text': message})
     except requests.ConnectionError:
         pass
 
 
-def get_response(json_data: dict):
+def get_response(json_data: dict) -> requests.Response:
     try:
         response = requests.post(f"http://{IP}:33035", json=json_data)
     except requests.ConnectionError:
@@ -56,7 +56,7 @@ def get_response(json_data: dict):
     return response
 
 
-def get_wallet_info():
+def get_wallet_info() -> tuple:
     json_data = {"id": "1", "jsonrpc": "2.0", "method": "get_addresses",
                  "params": [[f"{WALLET_ADDRESS}"]]}
 
@@ -76,7 +76,7 @@ def get_wallet_info():
         raise SystemExit
 
 
-if __name__ == '__main__':
+def main() -> None:
     active_rolls, _, candidate_rolls, balance = get_wallet_info()
 
     if active_rolls == 0 and candidate_rolls == 0:
@@ -92,3 +92,7 @@ if __name__ == '__main__':
             active_rolls, final_rolls, candidate_rolls, _ = get_wallet_info()
             send_to_telegram(f"Roll purchased successfully! \n Active Rolls: {active_rolls}\n Rolls: {final_rolls}\n "
                              f"Candidate Rolls: {candidate_rolls}")
+
+
+if __name__ == '__main__':
+    main()
