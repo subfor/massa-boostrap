@@ -31,7 +31,7 @@ MASSA_PASSWD = ""
 API_TOKEN = ""
 CHAT_ID = ""
 """
-API_TOKEN you can get with @BotFather when creating bot 
+API_TOKEN you can get with @BotFather when creating bot  
 CHAT_ID you can get it this way:
 1) Go to bot and send /start
 2) Send anything to bot
