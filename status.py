@@ -52,7 +52,8 @@ def get_response(json_data: dict) -> requests.Response:
     try:
         response = requests.post(f"http://{IP}:33035", json=json_data)
     except requests.ConnectionError:
-        return
+        send_to_telegram("Can't connect to node! ")
+        raise SystemExit
     return response
 
 
