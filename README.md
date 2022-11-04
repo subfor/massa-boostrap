@@ -7,6 +7,8 @@ pip3 install -r requirements.txt`
 
 # Rolls control and autobuy  -> status.py
 ```
+pip3 install requests
+
 This script must be run on your Node
     Example run script every 5 minutes:
     Install to cron to run every 5(o) min (on Ubuntu example):
